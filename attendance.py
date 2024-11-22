@@ -37,6 +37,8 @@ if __name__ == '__main__':
         options1.add_argument("--headless")
         # options1.headless = True
 
+        options1.binary_location = "/usr/bin/chromium-browser"
+
         driver = webdriver.Chrome(options=options1)
         
         driver.delete_all_cookies()
