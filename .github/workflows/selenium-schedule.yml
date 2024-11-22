@@ -2,7 +2,7 @@ name: Attendance Automation
 
 on:
   schedule:
-    - cron: '50 18 * * 1-5'
+    - cron: '55 11 * * 1-5'
   workflow_dispatch:
 
 jobs:
