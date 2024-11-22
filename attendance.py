@@ -6,6 +6,7 @@ import time
 import warnings
 import requests
 import datetime
+import pytz
 from selenium import webdriver
 import chromedriver_autoinstaller
 from selenium.webdriver.support.ui import WebDriverWait
@@ -21,14 +22,14 @@ from pyvirtualdisplay import Display
 display = Display(visible=0, size=(800, 800))  
 display.start()
 
-print("Installing Chromedriver...")
-chromedriver_autoinstaller.install() 
+ist = pytz.timezone('Asia/Kolkata')
 
-current_year = datetime.datetime.now().year
+current_year = datetime.datetime.now(ist).year
 
-current_date = datetime.datetime.now().strftime('%Y-%m-%d')
+current_date = datetime.datetime.now(ist).strftime('%Y-%m-%d')
+print(f"DATE:::{current_date}")
 
-current_day_of_week = datetime.datetime.now().weekday()
+current_day_of_week = datetime.datetime.now(ist).weekday()
 
 work_place_location_id = 1
 
@@ -36,6 +37,9 @@ if __name__ == '__main__':
     
     pid = str(os.getpid())
     print('pid:' + pid)  
+
+    print("Installing Chromedriver...")
+    chromedriver_autoinstaller.install() 
 
     try: 
         options1 = webdriver.ChromeOptions()  
@@ -91,7 +95,7 @@ if __name__ == '__main__':
                 sign_element = driver.find_element(By.XPATH, "/html/body/app/ng-component/div/div/div[2]/div/ghr-home/div[2]/div/gt-home-dashboard/div/div[2]/gt-component-loader/gt-attendance-info/div/div/div[3]/gt-button[1]")
                 sign_element.click()
                 time.sleep(5)
-                print("Clicking Sign In or Sign Out...")
+                print(f"Clicking {sign_element.text}...")
                 
                 WebDriverWait(driver, 10).until(
                     EC.visibility_of_element_located((By.CSS_SELECTOR, "gt-popup-modal[open]"))
