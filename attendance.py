@@ -130,13 +130,9 @@ if __name__ == '__main__':
             fh.write(f"\nDate : {str(current_date)}\tException : {str(e)}\n")
             fh.write(f"Traceback: {error_traceback}\n")
             fh.write(f"#################################################################################\n")
-    finally:
-        log_out_button = driver.find_element(By.XPATH,"/html/body/app/ng-component/div/gt-topbar/nav/div[4]/a/div")
-        log_out_button.click()
-        print("Logged Out...")
-        time.sleep(5)
-        driver.quit()
-        
-
-
-    
+    # finally:
+    #     log_out_button = driver.find_element(By.XPATH,"/html/body/app/ng-component/div/gt-topbar/nav/div[4]/a/div")
+    #     log_out_button.click()
+    #     print("Logged Out...")
+    #     time.sleep(5)
+    #     driver.quit()
