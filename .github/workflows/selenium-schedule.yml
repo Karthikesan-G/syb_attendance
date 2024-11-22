@@ -20,17 +20,20 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get update
+          sudo apt-get install -y libxss1 libappindicator3-1 libindicator7
+          sudo apt-get install -y xvfb
           pip install selenium
           pip install requests
           pip install chromedriver-autoinstaller
-          
-      - name: Install Xvfb
+
+      - name: Start Xvfb
         run: |
-          sudo apt-get update
-          sudo apt-get install -y xvfb
-          
+          export DISPLAY=:99
+          nohup Xvfb :99 &
+
       - name: Run Selenium script
         run: |
-          xvfb-run python attendance.py
+          python attendance.py
         env:
           DISPLAY: :99
