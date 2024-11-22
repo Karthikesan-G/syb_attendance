@@ -121,18 +121,28 @@ if __name__ == '__main__':
                 # button.click() 
                 time.sleep(5)
                 print("Done...")
+                log_out_button = driver.find_element(By.XPATH,"/html/body/app/ng-component/div/gt-topbar/nav/div[4]/a/div")
+                log_out_button.click()
+                print("Logged Out...")
+                time.sleep(5)
+                driver.quit()
             else:
                 print("Holiday...!")
+                log_out_button = driver.find_element(By.XPATH,"/html/body/app/ng-component/div/gt-topbar/nav/div[4]/a/div")
+                log_out_button.click()
+                print("Logged Out...")
+                time.sleep(5)
+                driver.quit()
     except Exception as e:
         error_traceback = traceback.format_exc()
-
+        print(f"Traceback: {error_traceback}\n")
         with open("Logs.txt", 'a', encoding='utf-8') as fh:
             fh.write(f"\nDate : {str(current_date)}\tException : {str(e)}\n")
             fh.write(f"Traceback: {error_traceback}\n")
             fh.write(f"#################################################################################\n")
-    # finally:
-    #     log_out_button = driver.find_element(By.XPATH,"/html/body/app/ng-component/div/gt-topbar/nav/div[4]/a/div")
-    #     log_out_button.click()
-    #     print("Logged Out...")
-    #     time.sleep(5)
-    #     driver.quit()
+
+
+        
+
+
+    
