@@ -25,6 +25,7 @@ jobs:
           pip install selenium
           pip install requests
           pip install chromedriver-autoinstaller
+          pip install pyvirtualdisplay
 
       - name: Run Selenium script
         run: |
