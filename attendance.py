@@ -34,7 +34,7 @@ if __name__ == '__main__':
     print('pid:' + pid)  
 
     try: 
-        options1 = Options()
+        options1 = webdriver.ChromeOptions()  
         options1.add_argument("--headless")
         # options1.headless = True
 
@@ -53,7 +53,9 @@ if __name__ == '__main__':
         pass_element = driver.find_element(By.ID, "password")
         pass_element.send_keys(decoded_password)
         time.sleep(2)
-        login_element = driver.find_element(By.XPATH, "/html/body/app-root/uas-portal/div/div/main/div/section/div[1]/o-auth/section/div/app-login/section/div/div/div/form/button")
+        login_element = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/uas-portal/div/div/main/div/section/div[1]/o-auth/section/div/app-login/section/div/div/div/form/button'))
+        )
         login_element.click()
         time.sleep(15)
         print("Logged In...")
