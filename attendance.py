@@ -16,6 +16,10 @@ warnings.filterwarnings("ignore")
 import base64
 import json
 import traceback
+from pyvirtualdisplay import Display
+
+display = Display(visible=0, size=(800, 800))  
+display.start()
 
 print("Installing Chromedriver...")
 chromedriver_autoinstaller.install() 
@@ -35,7 +39,7 @@ if __name__ == '__main__':
 
     try: 
         options1 = webdriver.ChromeOptions()  
-        options1.add_argument("--headless")
+        # options1.add_argument("--headless")
         # options1.headless = True
 
 
