@@ -31,9 +31,6 @@ if __name__ == '__main__':
 
     try: 
         options1 = Options()
-        options1.add_argument('--disable-blink-features=AutomationControlled')
-        options1.add_argument('--start-maximized')
-        options1.add_argument("--disable-popup-blocking")
         options1.add_argument("--headless")
         # options1.headless = True
 
