@@ -7,6 +7,7 @@ import warnings
 import requests
 import datetime
 from selenium import webdriver
+import chromedriver_autoinstaller
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -15,6 +16,9 @@ warnings.filterwarnings("ignore")
 import base64
 import json
 import traceback
+
+print("Installing Chromedriver...")
+chromedriver_autoinstaller.install() 
 
 current_year = datetime.datetime.now().year
 
@@ -34,7 +38,6 @@ if __name__ == '__main__':
         options1.add_argument("--headless")
         # options1.headless = True
 
-        options1.binary_location = "/usr/bin/chromium-browser"
 
         driver = webdriver.Chrome(options=options1)
         
@@ -120,10 +123,10 @@ if __name__ == '__main__':
                 # button.click() 
                 time.sleep(5)
                 print("Done...")
-                log_out_button = driver.find_element(By.XPATH,"/html/body/app/ng-component/div/gt-topbar/nav/div[4]/a/div")
-                log_out_button.click()
-                print("Logged Out...")
-                time.sleep(5)
+                # log_out_button = driver.find_element(By.XPATH,"/html/body/app/ng-component/div/gt-topbar/nav/div[4]/a/div")
+                # log_out_button.click()
+                # print("Logged Out...")
+                # time.sleep(5)
                 driver.quit()
             else:
                 print("Holiday...!")
