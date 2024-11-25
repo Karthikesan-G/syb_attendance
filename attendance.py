@@ -17,6 +17,9 @@ warnings.filterwarnings("ignore")
 import base64
 import json
 import traceback
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from pyvirtualdisplay import Display
 
 display = Display(visible=0, size=(800, 800))  
@@ -32,6 +35,36 @@ print(f"DATE:::{current_date}")
 current_day_of_week = datetime.datetime.now(ist).weekday()
 
 work_place_location_id = 1
+
+def confirm_mail_send(mail_status):
+    sender_email = "karthikesan.g@sybrantdigital.com"
+    receiver_email = "karthikesan.g@sybrantdigital.com"
+    password = "s24142424k" 
+
+    current_time = datetime.datetime.now(ist).strftime("%I:%M:%S %p")
+    subject = "Attendance Mail"
+    body = f"{mail_status} Time : {current_time}"
+
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = receiver_email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    try:
+        server = smtplib.SMTP('smtp.zoho.com', 587)
+        server.starttls() 
+        server.login(sender_email, password)
+
+        server.sendmail(sender_email, receiver_email, msg.as_string())
+
+        print("Email sent successfully!")
+
+    except Exception as e:
+        print(f"Failed to send email. Error: {str(e)}")
+
+    finally:
+        server.quit()
 
 if __name__ == '__main__':
     
@@ -94,8 +127,8 @@ if __name__ == '__main__':
 
                 sign_element = driver.find_element(By.XPATH, "/html/body/app/ng-component/div/div/div[2]/div/ghr-home/div[2]/div/gt-home-dashboard/div/div[2]/gt-component-loader/gt-attendance-info/div/div/div[3]/gt-button[1]")
                 sign_element.click()
-                time.sleep(5)
                 print(f"Clicking {sign_element.text}...")
+                time.sleep(5)
                 
                 WebDriverWait(driver, 10).until(
                     EC.visibility_of_element_located((By.CSS_SELECTOR, "gt-popup-modal[open]"))
@@ -111,8 +144,8 @@ if __name__ == '__main__':
                     EC.element_to_be_clickable((By.CSS_SELECTOR, ".dropdown-button"))
                 )
                 dropdown_button.click()
-                time.sleep(5)
                 print("Clicking dropdown menu...")
+                time.sleep(5)
 
                 dropdown_items = WebDriverWait(shadow_root1, 10).until(
                     EC.visibility_of_all_elements_located((By.CSS_SELECTOR, ".dropdown-body .dropdown-item"))
@@ -121,18 +154,21 @@ if __name__ == '__main__':
 
                 dropdown_items[work_place_location_id].click()
                 print("Selecting work location...")
-                
 
                 gt_button = driver.find_element(By.XPATH, '/html/body/app/ng-component/div/div/div[2]/div/ghr-home/div[2]/div/gt-home-dashboard/gt-popup-modal/div/div/div[2]/gt-button')
 
                 shadow_root = driver.execute_script('return arguments[0].shadowRoot', gt_button)
 
                 button = shadow_root.find_element(By.CSS_SELECTOR, 'button.btn-primary')
-
+                button_text =  button.text
+                
                 print("Button text:", button.text)
                 # button.click() 
                 time.sleep(5)
                 print("Done...")
+
+                confirm_mail_send(button_text)
+                
                 # log_out_button = driver.find_element(By.XPATH,"/html/body/app/ng-component/div/gt-topbar/nav/div[4]/a/div")
                 # log_out_button.click()
                 # print("Logged Out...")
