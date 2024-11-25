@@ -2,7 +2,10 @@ name: Attendance Automation
 
 on:
   schedule:
-    - cron: '40 7 * * 1-5'
+    # Run at 4:30 AM UTC, which is 10:00 AM IST, Monday to Friday
+    - cron: '30 4 * * 1-5'
+    # Run at 1:00 PM UTC, which is 6:30 PM IST, Monday to Friday
+    - cron: '0 13 * * 1-5'
   workflow_dispatch:
 
 jobs:
@@ -13,10 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Print current time on server
-        run: |
-          echo "Current time on server: $(date)"
-          
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
