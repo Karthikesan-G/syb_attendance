@@ -2,7 +2,7 @@ name: Attendance Automation
 
 on:
   schedule:
-    - cron: '5 7 * * 1-5'
+    - cron: '20 7 * * 1-5'
   workflow_dispatch:
 
 jobs:
@@ -33,4 +33,3 @@ jobs:
           python attendance.py
         env:
           DISPLAY: :99
-          TZ: 'Asia/Kolkata'
