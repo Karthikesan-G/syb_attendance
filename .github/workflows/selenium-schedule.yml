@@ -13,6 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Print current time on server
+        run: |
+          echo "Current time on server: $(date)"
+          
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
