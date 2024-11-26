@@ -34,7 +34,7 @@ print(f"DATE:::{current_date}")
 
 current_day_of_week = datetime.datetime.now(ist).weekday()
 
-work_place_location_id = 1
+work_place_location_id = 3
 
 def confirm_mail_send(mail_status):
     sender_email = "karthikesan.g@sybrantdigital.com"
