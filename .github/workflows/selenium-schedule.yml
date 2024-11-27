@@ -2,7 +2,7 @@ name: Attendance Automation
 
 on:
   schedule:
-    # Run at 4:45 AM UTC, which is 10:00 AM IST, Monday to Friday
+    # Run at 4:45 AM UTC, which is 10:15 AM IST, Monday to Friday
     - cron: '45 4 * * 1-5'
     # Run at 1:00 PM UTC, which is 6:30 PM IST, Monday to Friday
     - cron: '0 13 * * 1-5'
