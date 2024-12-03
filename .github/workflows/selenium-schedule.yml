@@ -36,3 +36,5 @@ jobs:
           python attendance.py
         env:
           DISPLAY: :99
+          SYB_EMAIL_PASSWORD: ${{ secrets.SYB_EMAIL_PASSWORD }} 
+          SYB_ATTENDANCE_PORTAL_PASSWORD: ${{ secrets.SYB_ATTENDANCE_PORTAL_PASSWORD }} 
