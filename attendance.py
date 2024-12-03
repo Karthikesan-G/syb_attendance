@@ -35,11 +35,13 @@ print(f"DATE:::{current_date}")
 current_day_of_week = datetime.datetime.now(ist).weekday()
 
 work_place_location_id = 1
+SYB_EMAIL_PASSWORD = os.getenv('SYB_EMAIL_PASSWORD')
+SYB_ATTENDANCE_PORTAL_PASSWORD = os.getenv('SYB_ATTENDANCE_PORTAL_PASSWORD')
 
 def confirm_mail_send(mail_status):
     sender_email = "karthikesan.g@sybrantdigital.com"
     receiver_email = "karthikesan.g@sybrantdigital.com"
-    password = "s24142424k" 
+    password = SYB_EMAIL_PASSWORD
 
     current_time = datetime.datetime.now(ist).strftime("%I:%M:%S %p")
     subject = "Attendance Mail"
@@ -89,10 +91,10 @@ if __name__ == '__main__':
         id_element = driver.find_element(By.ID, "username")
         id_element.send_keys("ST1081")
         time.sleep(2)
-        encoded_password = "S2FydGhpa0A5NTQx" 
+        encoded_password = "" 
         decoded_password = base64.b64decode(encoded_password).decode('utf-8')
         pass_element = driver.find_element(By.ID, "password")
-        pass_element.send_keys(decoded_password)
+        pass_element.send_keys(SYB_ATTENDANCE_PORTAL_PASSWORD)
         time.sleep(2)
         login_element = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/uas-portal/div/div/main/div/section/div[1]/o-auth/section/div/app-login/section/div/div/div/form/button'))
@@ -163,7 +165,7 @@ if __name__ == '__main__':
                 button_text =  button.text
                 
                 print("Button text:", button.text)
-                button.click() 
+                # button.click() 
                 time.sleep(5)
                 print("Done...")
 
