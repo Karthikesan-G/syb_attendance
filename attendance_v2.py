@@ -151,7 +151,7 @@ if __name__ == '__main__':
             button_text =  button.text
             
             print("Button text:", button.text)
-            # button.click() 
+            button.click() 
             time.sleep(5)
             print("Done...")
 
