@@ -1,6 +1,6 @@
 """ 
     Attendance Automation Script Without Holiday Logic
-    Need to manually update holiday dates for each months in the code.
+    Need to manually update holiday dates for each months or whole year holidays in the code.
 """
 
 
