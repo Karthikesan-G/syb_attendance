@@ -108,7 +108,7 @@ if __name__ == '__main__':
         time.sleep(15)
         print("Logged In...")
 
-        holiday_dates = ['2025-01-01', '2025-01-13', '2025-01-14', '2025-01-26']
+        holiday_dates = ['2025-01-01', '2025-01-13', '2025-01-14', '2025-01-26', '2025-02-04']
         print(holiday_dates)
 
         if current_date not in holiday_dates and current_day_of_week not in [5, 6]:
